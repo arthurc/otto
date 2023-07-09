@@ -1,0 +1,5 @@
+otto:
+  strategy:
+    registration:
+      sma15:
+        className: se.arthur.otto.strategy.sma.SmaStrategy
