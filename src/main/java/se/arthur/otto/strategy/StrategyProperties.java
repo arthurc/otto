@@ -1,13 +1,13 @@
 package se.arthur.otto.strategy;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import lombok.Data;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 @Configuration
 @ConfigurationProperties("otto.strategy")
@@ -20,11 +20,12 @@ class StrategyProperties {
         private Class<? extends Strategy> className;
 
         @Override
-        public void afterPropertiesSet() throws Exception {
+        public void afterPropertiesSet() {
             validate();
         }
 
         private void validate() {
+            Objects.requireNonNull(this.className, "Class name cannot be empty");
         }
     }
 }
